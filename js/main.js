@@ -1,4 +1,4 @@
-/*global $, tau, tizen, Utils, Dexie, GearModel, VirtualList, LANG_JSON_DATA, PackInfo*/
+/*global $, tau, tizen, Utils, Dexie, GearModel, LANG_JSON_DATA, PackInfo*/
 /*jshint unused: false*/
 /*jslint laxbreak: true*/
 
