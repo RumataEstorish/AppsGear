@@ -8,13 +8,8 @@ var listTop = 0;
 var packagesList = [];
 var progressBarWidget = null;
 
-function onerror(err) {
+function onerror() {
 	alert(LANG_JSON_DATA.LAUNCHING_APP_ERROR);
-}
-
-function toastMessage(msg) {
-	$("#infoToastMsg").html(msg);
-	tau.openPopup("#infoToast");
 }
 
 function showDetails(a) {
@@ -59,8 +54,7 @@ function copyList(packages) {
 }
 
 function onListInstalledPackages(packages) {
-	var i = 0, list = $('#appsList');
-	// console.log("on packlist");
+	var list = $('#appsList');
 
 	copyList(packages).then(
 			function() {
@@ -69,10 +63,10 @@ function onListInstalledPackages(packages) {
 
 				
 				packagesList.forEach(function(pack) {
-					var item = null;
+					var item;
 					if (pack.iconPath && pack.iconPath !== '') {
 						item = $('<li class="li-has-multiline li-has-thumb-left"><label>' + pack.name + '<span class="li-text-sub ui-li-sub-text">' + pack.version
-								+ '</span><img onerror="imgerror(this)" style="background-color: rgba(0,0,0,0)" width="32" height="32" class="ui-li-thumb-left" src="' + pack.iconPath + '"/></label>');
+								+ '</span><img alt="" onerror="imgerror(this)" style="background-color: rgba(0,0,0,0)" width="32" height="32" class="ui-li-thumb-left" src="' + pack.iconPath + '"/></label>');
 					} else {
 						item = $('<li class="li-has-multiline"><label>' + pack.name + '<span class="li-text-sub ui-li-sub-text">' + pack.version + '</span></label>');
 					}
@@ -111,7 +105,7 @@ function appClicked(id) {
 }
 
 function translateUI() {
-	$("#processingPage h2").html(LANG_JSON_DATA.BUILING_LIST);
+	$("#processingPage h2").html(LANG_JSON_DATA.BUILDING_LIST);
 	$("#processingTextS").html(LANG_JSON_DATA.PROCESSING_TEXT);
 	$("#processingTextS2").html(LANG_JSON_DATA.PROCESSING_TEXT);
 	$("#appDetailsPage h2").html(LANG_JSON_DATA.DETAILS);
@@ -131,8 +125,9 @@ $(window).on("load", function() {
 
 	translateUI();
 	var progressBar = document.getElementById("circleprogress");
+	var progressBarPage = $('#pageCircleProgressBar');
 
-	$('#pageCircleProgressBar').on('pagebeforeshow', function() {
+	progressBarPage.on('pagebeforeshow', function() {
 		if (tau.support.shape.circle) { // make Circle Progressbar object
 			progressBarWidget = new tau.widget.CircleProgressBar(progressBar, {
 				size : "full"
@@ -144,7 +139,7 @@ $(window).on("load", function() {
 		}
 	});
 
-	$('#pageCircleProgressBar').on('pagehide', function() {
+	progressBarPage.on('pagehide', function() {
 		try {
 			progressBarWidget.destroy();
 		} catch (ignored) {

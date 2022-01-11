@@ -9,5 +9,6 @@
     <orderEntry type="library" name="tau" level="application" />
     <orderEntry type="library" name="tizen" level="application" />
     <orderEntry type="library" name="tz" level="application" />
+    <orderEntry type="library" name="tizen-studio" level="project" />
   </component>
 </module>
