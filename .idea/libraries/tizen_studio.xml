@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="tizen-studio" type="kotlin.js">
+    <CLASSES>
+      <root url="file://$USER_HOME$/tizen-studio-data" />
+      <root url="file://$USER_HOME$/tizen-studio" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

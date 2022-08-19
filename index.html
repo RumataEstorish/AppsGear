@@ -1,152 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,user-scalable=no">
-<meta name="description" content="Applications list" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta name="description" content="Applications list"/>
 
-<title>AppsGear</title>
+    <title>AppsGear</title>
 
-<link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css"/>
+    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+          href="lib/tau/wearable/theme/default/tau.circle.min.css">
 
-<link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css">
-<link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
-	href="lib/tau/wearable/theme/default/tau.circle.min.css">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+          href="css/style.circle.css">
 
-<link rel="stylesheet" href="css/squareStyle.css">
-<link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
-	href="css/circleStyle.css">
+    <script type="text/javascript" src="js/circle-helper.js"></script>
 
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
-<script type="text/javascript" src="js/packInfo.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
+    <script type="text/javascript" src="js/list-1.0.0.js"></script>
+    <script type="text/javascript" src="js/packInfo.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
 
-<script src="js/utils-2.1.7.js"></script>
-<script src="js/circle-helper-1.0.0.3.js"></script>
+    <script src="js/utils-2.1.8.js"></script>
 
-<script src="locales/en-us/language.js"></script>
-<script src="language.js"></script>
+    <script src="locales/en-us/language.js"></script>
+    <script src="language.js"></script>
 
 </head>
 <body>
-	<div class="ui-page" id="pageCircleProgressBar" data-enable-page-scroll="false">
-		<header class="ui-header">
-			<h2 class="ui-title">Processing packages</h2>
-		</header>
-		<div class="ui-content content-padding">
-			<div class="result" id="result"></div>
-			<progress class="ui-circle-progress" id="circleprogress" max="100" value="20"></progress>
-		</div>
-		
-	</div>
+<div class="ui-page" id="pageCircleProgressBar" data-enable-page-scroll="false">
+    <header class="ui-header">
+        <h2 class="ui-title">Processing packages</h2>
+    </header>
+    <div class="ui-content content-padding">
+        <div class="result" id="result"></div>
+        <progress class="ui-circle-progress" id="circleprogress" max="100" value="20"></progress>
+    </div>
 
-	<div class="ui-page" id="smallProcessingPage">
-		<div class="ui-content content-padding">
-			<div class="small-processing-container">
-				<div class="ui-processing" style="visibility: hidden;"></div>
-				<div id="processingTextS" class="ui-processing-text">Building list... App will freeze
-					for some time. Screen will turn on automatically.</div>
-			</div>
-		</div>
-		<script type="text/javascript">
-			(function() {
-				var page = document.getElementById("smallProcessingPage");
-				page.addEventListener("pageshow", function(event) {
-					var page = event.target, processing = page.querySelector(".ui-processing");
-					processing.style.visibility = "";
-				}, false);
+</div>
 
-				page.addEventListener("pagebeforehide", function(event) {
-					var page = event.target, processing = page.querySelector(".ui-processing");
-					processing.style.visibility = "hidden";
-				}, false);
-			}());
-		</script>
-	</div>
+<div class="ui-page" id="smallProcessingPage">
+    <div class="ui-content content-padding">
+        <div class="small-processing-container">
+            <div class="ui-processing" style="visibility: hidden;"></div>
+            <div id="processingTextS" class="ui-processing-text">Building list... App will freeze
+                for some time. Screen will turn on automatically.
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var page = document.getElementById("smallProcessingPage");
+            page.addEventListener("pageshow", function (event) {
+                var page = event.target, processing = page.querySelector(".ui-processing");
+                processing.style.visibility = "";
+            }, false);
 
-	<div class="ui-page" id="processingPage">
-		<header class="ui-header">
-			<h2 class="ui-title">Building list</h2>
-		</header>
-		<div class="ui-content content-padding">App will freeze for some
-			time and vibrate when ready. Open it from recent manually please.</div>
-		<div class="ui-processing ui-processing-full-size"
-			style="visibility: hidden;"></div>
-		<script type="text/javascript">
-			(function() {
-				var page = document.getElementById("processingPage");
-				page.addEventListener("pageshow", function(event) {
-					var page = event.target, processing = page.querySelector(".ui-processing");
-					processing.style.visibility = "";
-				}, false);
+            page.addEventListener("pagebeforehide", function (event) {
+                var page = event.target, processing = page.querySelector(".ui-processing");
+                processing.style.visibility = "hidden";
+            }, false);
+        }());
+    </script>
+</div>
 
-				page.addEventListener("pagebeforehide", function(event) {
-					var page = event.target, processing = page.querySelector(".ui-processing");
-					processing.style.visibility = "hidden";
-				}, false);
-			}());
-		</script>
-	</div>
+<div class="ui-page" id="processingPage">
+    <header class="ui-header">
+        <h2 class="ui-title">Building list</h2>
+    </header>
+    <div class="ui-content content-padding">App will freeze for some
+        time and vibrate when ready. Open it from recent manually please.
+    </div>
+    <div class="ui-processing ui-processing-full-size"
+         style="visibility: hidden;"></div>
+    <script type="text/javascript">
+        (function () {
+            var page = document.getElementById("processingPage");
+            page.addEventListener("pageshow", function (event) {
+                var page = event.target, processing = page.querySelector(".ui-processing");
+                processing.style.visibility = "";
+            }, false);
 
-
-	<div id="appsListPage" class="ui-page">
-		<div id="appsContent" class="ui-content">
-			<ul id="appsList" class="ui-listview ui-virtuallistview">
-			</ul>
-		</div>
-		<!-- <footer id="appFooter" class="ui-footer" style="background-color: #0c0637; display: inline; margin: 0px; padding: 0px; height: auto">
-			<div id="info" style="font-size: 0.8em; margin: 2px; display:inline">
-				<p id="appsCount" style="float: left;margin: 2px;"/>
-				<p id="storeSize" style="float: right;margin: 2px;"/>
-			</div>
-		</footer>-->
-		</div>
-		 
+            page.addEventListener("pagebeforehide", function (event) {
+                var page = event.target, processing = page.querySelector(".ui-processing");
+                processing.style.visibility = "hidden";
+            }, false);
+        }());
+    </script>
+</div>
 
 
+<div id="appsListPage" class="ui-page">
+    <div id="appsContent" class="ui-content">
+        <ul id="appsList" class="ui-listview">
+        </ul>
+    </div>
+</div>
 
-	<div id="appDetailsPage" class="ui-page">
-		<header id="detailsHeader"
-			class="ui-header ui-has-more ui-header-small">
-			<h2 class="ui-title">Details</h2>
-		</header>
-		<div class="ui-content">
-			<ul id="appDetailsList" class="ui-listview">
-				<li class="li-has-multiline"><a href="#"
-					onclick="showDetails(this)"><span id="appName"
-						class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"><span
-						id="appVersion" class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"><span
-						id="appTotalSize" class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"><span
-						id="appDataSize" class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"><span
-						id="appLastModified" class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"><span
-						id="appAuthor" class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"><span
-						id="appDesc" class="li-text-sub ui-li-sub-text"
-						onclick="showDescription(this)"></span></a></li>
-				<li class="li-has-multiline"><a href="#"
-					onclick="showPackId(this)"><span id="packId"
-						class="li-text-sub ui-li-sub-text"></span></a></li>
-				<li class="li-has-multiline"><a href="#"
-					onclick="showAppId(this)"><span id="appId"
-						class="li-text-sub ui-li-sub-text"></span></a></li>
-			</ul>
-		</div>
-		<footer class="ui-footer ui-bottom-button">
-			<button id="launchAppButton" class="ui-btn" onclick="launchAppClick()"></button>
-		</footer>
-	</div>
 
-	<div id="infoToast" class="ui-popup ui-popup-toast">
-		<div id="infoToastMsg" class="ui-popup-content"
-			style="overflow-y: hidden;"></div>
-	</div>	
+<div id="appDetailsPage" class="ui-page">
+    <header id="detailsHeader" class="ui-header">
+        <h2 class="ui-title">Details</h2>
+    </header>
+    <div class="ui-content">
+        <ul id="appDetailsList" class="ui-listview">
+            <li class="li-has-multiline">
+                <a href="#"
+                   onclick="showDetails(this)"><span id="appName"
+                                                     class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"><span
+                    id="appVersion" class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"><span
+                    id="appTotalSize" class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"><span
+                    id="appDataSize" class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"><span
+                    id="appLastModified" class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"><span
+                    id="appAuthor" class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"><span
+                    id="appDesc" class="li-text-sub ui-li-sub-text"
+                    onclick="showDescription(this)"></span></a></li>
+            <li class="li-has-multiline"><a href="#"
+                                            onclick="showPackId(this)"><span id="packId"
+                                                                             class="li-text-sub ui-li-sub-text"></span></a></li>
+            <li class="li-has-multiline"><a href="#"
+                                            onclick="showAppId(this)"><span id="appId"
+                                                                            class="li-text-sub ui-li-sub-text"></span></a></li>
+        </ul>
+    </div>
+    <footer class="ui-footer ui-bottom-button ui-fixed">
+        <button id="launchAppButton" class="ui-btn" onclick="launchAppClick()"></button>
+    </footer>
+</div>
+
+<div id="infoToast" class="ui-popup ui-popup-toast">
+    <div id="infoToastMsg" class="ui-popup-content"
+         style="overflow-y: hidden;"></div>
+</div>
 
 </body>
 </html>
